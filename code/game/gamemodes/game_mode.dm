@@ -180,10 +180,16 @@
 	intercepttext += "<B> Centcom has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
 
 	var/list/possible_modes = list()
+<<<<<<< HEAD
 	possible_modes.Add("revolution", "wizard", "nuke", "traitor", "malf", "changeling", "cult")
 	possible_modes -= "[ticker.mode]" //remove current gamemode to prevent it from being randomly deleted, it will be readded later
 
 	var/number = pick(1, 2)
+=======
+	possible_modes.Add("revolution", "wizard", "nuke", "traitor", "malf", "changeling", "cult", "clone")
+	possible_modes -= "[ticker.mode]"
+	var/number = pick(2, 3)
+>>>>>>> upstream/jammin
 	var/i = 0
 	for(i = 0, i < number, i++) //remove 1 or 2 possibles modes from the list
 		possible_modes.Remove(pick(possible_modes))
@@ -220,7 +226,11 @@
 		if(BE_REV)			roletext="revolutionary"
 		if(BE_GANG)			roletext="gangster"
 		if(BE_CULTIST)		roletext="cultist"
+<<<<<<< HEAD
 		if(BE_MONKEY)		roletext="monkey"
+=======
+		if(BE_CLONE)		roletext="clone"
+>>>>>>> upstream/jammin
 
 
 	// Ultimate randomizing code right here

@@ -322,6 +322,7 @@ datum/objective/nuclear
 
 var/global/list/possible_items = list()
 datum/objective/steal
+<<<<<<< HEAD
 	var/datum/objective_item/targetinfo = null //Save the chosen item datum so we can access it later.
 	var/obj/item/steal_target = null //Needed for custom objectives (they're just items, not datums).
 	dangerrating = 5 //Overridden by the individual item's difficulty, but defaults to 5 for custom objectives.
@@ -348,6 +349,55 @@ datum/objective/steal/proc/set_target(var/datum/objective_item/item)
 		steal_target = targetinfo.targetitem
 		explanation_text = "Steal [targetinfo.name]."
 		dangerrating = targetinfo.difficulty
+=======
+	var/obj/item/steal_target
+	var/target_name
+
+	var/global/possible_items[] = list(
+		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
+		"a hand teleporter" = /obj/item/weapon/hand_tele,
+		"an RCD" = /obj/item/weapon/rcd,
+		"a jetpack" = /obj/item/weapon/tank/jetpack,
+		"a functional AI" = /obj/item/device/aicard,
+		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
+		"the station blueprints" = /obj/item/blueprints,
+		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
+		"an unused sample of slime extract" = /obj/item/slime_extract,
+		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+		"the medal of captaincy" = /obj/item/clothing/tie/medal/gold/captain,
+		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
+		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
+		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
+/*
+Nobody takes these seriously anyways -- Ikki
+		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
+		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
+		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
+		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
+		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
+		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
+*/
+	)
+
+	var/global/possible_items_special[] = list(
+		"the nuclear authentication disk" = /obj/item/weapon/disk/nuclear,
+		"an advanced energy gun" = /obj/item/weapon/gun/energy/gun/nuclear,
+		"a diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
+		"a bag of holding" = /obj/item/weapon/storage/backpack/holding,
+		"a hyper-capacity cell" = /obj/item/weapon/cell/hyper,
+		"10 diamonds" = /obj/item/stack/sheet/mineral/diamond,
+		"50 gold bars" = /obj/item/stack/sheet/mineral/gold,
+		"25 refined uranium bars" = /obj/item/stack/sheet/mineral/uranium,
+	)
+
+
+	proc/set_target(item_name)
+		target_name = item_name
+		steal_target = possible_items[target_name]
+		if (!steal_target )
+			steal_target = possible_items_special[target_name]
+		explanation_text = "Steal [target_name]."
+>>>>>>> upstream/jammin
 		return steal_target
 	else
 		explanation_text = "Free objective"
